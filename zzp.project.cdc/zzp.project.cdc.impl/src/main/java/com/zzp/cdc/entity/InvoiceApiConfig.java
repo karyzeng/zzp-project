@@ -38,6 +38,12 @@ public class InvoiceApiConfig implements Serializable {
     private String system;
 
     /**
+     * 开票系统名称
+     */
+    @TableField("SYSTEM_NAME")
+    private String systemName;
+
+    /**
      * 开票系统API URL
      */
     @TableField("URL")

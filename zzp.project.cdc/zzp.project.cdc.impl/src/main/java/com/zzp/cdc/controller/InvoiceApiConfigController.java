@@ -1,9 +1,11 @@
 package com.zzp.cdc.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import com.zzp.cdc.entity.InvoiceApiConfig;
+import com.zzp.cdc.service.IInvoiceApiConfigService;
+import com.zzp.spring.base.results.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -16,5 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/cdc/invoice-api-config")
 public class InvoiceApiConfigController {
+
+    @Autowired
+    private IInvoiceApiConfigService invoiceApiConfigService;
+
+    @ResponseBody
+    @RequestMapping(value = "get", method = RequestMethod.GET)
+    public Result<InvoiceApiConfig> getConfig(@RequestParam(value = "id") Integer id) {
+        InvoiceApiConfig invoiceApiConfig = invoiceApiConfigService.getById(id);
+        return Result.ok("查询成功", invoiceApiConfig);
+    }
 
 }
